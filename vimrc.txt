@@ -1,0 +1,80 @@
+set nocompatible            " use Vim settings, not vi
+set shell=/bin/sh           " sets sh as shell
+set number                  " show line numbers
+"syntax enable               " enable syntax processing (handled by vim-plug)
+set background=dark
+"set textwidth=79            " lines longer than 79 columns will be broken
+set shiftwidth=4            " operation >> indents 4 columns; << unindents 4 columns
+set tabstop=4               " number of visual spaces per TAB
+set expandtab               " insert spaces when hitting TABs
+set showcmd                 " show command in bottom bar
+set softtabstop=4           " insert/delete 4 spaces when hitting a TAB/BACKSPACE
+set shiftround              " round indent to multiple of 'shiftwidth'
+set autoindent              " align the new line indent with the previous line
+set cursorline              " highlight current line
+set clipboard=unnamed       " use system clipboard
+"filetype indent on          " load filetype-specific indent files (handled by vim-plug)
+set incsearch               " search as characters are entered
+set ignorecase              " ignores case while searching
+set smartcase               " uses cases when search term has case eg:/The
+set hlsearch                " highlight matches
+" this unsets the last search pattern register by hitting return
+nnoremap <CR> :noh<CR><CR>
+
+set wildmenu                " visual autocomplete for command menu
+set lazyredraw              " redraw only when we need to.
+set showmatch               " highlight matching [{()}]
+
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
+
+" move to beginning/end of line
+nnoremap B ^
+nnoremap E $
+
+" $/^ doesn't do anything
+nnoremap $ <nop>
+nnoremap ^ <nop>
+
+" disabling arrow keys
+noremap  <Up> ""
+noremap! <Up> <Esc>
+noremap  <Down> ""
+noremap! <Down> <Esc>
+noremap  <Left> ""
+noremap! <Left> <Esc>
+noremap  <Right> ""
+noremap! <Right> <Esc>
+
+" vim plug setup
+" directory for plugins
+call plug#begin('~/.vim/plugged')
+" plugin list
+Plug 'kien/ctrlp.vim'
+Plug 'scrooloose/syntastic'
+Plug 'scrooloose/nerdtree'
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'Raimondi/delimitMate'
+Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
+Plug 'bling/vim-airline'
+Plug 'ervandew/supertab'
+Plug 'honza/vim-snippets'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'SirVer/ultisnips'
+Plug 'ajh17/VimCompletesMe'
+Plug 'autowitch/hive.vim'
+Plug 'flazz/vim-colorschemes'
+Plug 'davidhalter/jedi-vim'
+" initialize plugin system
+call plug#end()
+
+" for .hql files
+au BufNewFile,BufRead *.hql set filetype=hive expandtab
+" for .q files
+au BufNewFile,BufRead *.q set filetype=hive expandtab
+
+colorscheme molokai
